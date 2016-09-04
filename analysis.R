@@ -14,7 +14,7 @@ library (Hmisc)
 # Check non-parametric correlations?
 # Add school in a multilevel model of SKCQ change? - Check Field p.878 on how.
 # For hypothesis 3, non-parametric or robust alternative to the pre/post regression 
-# already calculated in 'analysis'.
+# already calculated in 'analysis'
 
 ### HYPOTHESIS 1: Confidence with emotional/behavioural difficulties, understanding of Solihull concepts and intent to use Solihull concepts all increase following Solihull training
 
