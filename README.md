@@ -5,9 +5,7 @@ Data handling files for Solihull audit project
 1. Use separate Google Drive link to make local copy of 'solihull' folder.
 2. Navigate to solihull/data/R
 3. Make local copy of the R scripts  
-```$ git clone https://github.com/joehickey/solihull-audit.git```  
-*OR*  
-Create new project in RStudio using the Version Control option
+```$ git clone https://github.com/joehickey/solihull-audit.git```
 
 ## IVs
 - **school**
