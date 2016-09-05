@@ -135,10 +135,12 @@ t.test(proQolPreSTS, proQolPostSTS, paired = T)
 ### HYPOTHESIS 3: Solihull training effects predict increased professional quality of life
 
 # Test for linear relationships between change in SCKQ and change in PROQOL
-rcorr(as.matrix(data.frame(SKCQAll, proQolAll), type = "pearson"))
+rcorr(as.matrix(data.frame(SKCQAll, proQolAll), type = "spearman"))
+# Follow up significant correlations
+cor.test(SKCQ2Use, proQolPostCS, method = "spearman")
+cor.test(SKCQ2Use, proQolPostBO, method = "spearman")
 # Significant correlations between SKCQ2Use and proQolPostCS, SKCQ2Use and proQolPostBO
-# Others?
-
+# What about controlling for baseline PROQOL?
 # Correlate change scores for SKCQ and PROQOL variables
 ChgScores <-
   data.frame(SKCQConfChg,
