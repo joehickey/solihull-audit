@@ -10,7 +10,9 @@ library(multcomp)
 library(dplyr)
 library(psy)
 
-### DATA PREPARATION ###
+######################
+## DATA PREPARATION ##
+######################
 
 # Define the variable types
 varTypes <-

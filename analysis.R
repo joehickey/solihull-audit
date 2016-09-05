@@ -15,7 +15,9 @@ library (Hmisc)
 # For hypothesis 3, non-parametric or robust alternative to the pre/post regression 
 # already calculated in 'analysis'
 
-### HYPOTHESIS 1: Confidence with emotional/behavioural difficulties, understanding of Solihull concepts and intent to use Solihull concepts all increase following Solihull training
+##################    Confidence with emotional/behavioural difficulties,
+## HYPOTHESIS 1 ##    understanding of Solihull concepts
+##################    and intent to use Solihull concepts all increase following Solihull training
 
 # Non-parametric tests
 wilcox.test(
@@ -110,8 +112,9 @@ summary(postHocs)
 
 ### HYPOTHESIS 1 accepted...?
 
-
-### HYPOTHESIS 2: Professional quality of life increases following Solihull training
+##################
+## HYPOTHESIS 2 ## Professional quality of life increases following Solihull training
+##################
 
 # Non-parametric tests
 wilcox.test(
@@ -130,8 +133,9 @@ t.test(proQolPreSTS, proQolPostSTS, paired = T)
 
 ### HYPOTHESIS 2 accepted
 
-
-### HYPOTHESIS 3: Solihull training effects predict increased professional quality of life
+###################
+### HYPOTHESIS 3 ## Solihull training effects predict increased professional quality of life
+###################
 
 # Test for linear relationships between change in SCKQ and change in PROQOL
 rcorr(as.matrix(data.frame(SKCQAll, proQolAll), type = "spearman"))
@@ -164,5 +168,6 @@ fitReg3 <-
   lm(proQolPostSTS ~ proQolPreSTS + SKCQConfChg + SKCQUndChg + SKCQUseChg,
      data = dat)
 summary(fitReg3) # Change in understanding of Solihull concepts is a signifcant predictor of STS at follow-up
+
 
 ### HYPOTHESIS 3 partially accepted
