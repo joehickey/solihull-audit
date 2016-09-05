@@ -1,3 +1,4 @@
+.gitignore
 .Rproj
 .Rproj.user
 .Rhistory
@@ -5,5 +6,5 @@
 .Ruserdata
 .Rbuildignore
 "Icon\r"
-vars_readme
 .Rproj
+solihull.Rproj
