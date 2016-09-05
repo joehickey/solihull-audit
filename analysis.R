@@ -142,30 +142,27 @@ cor.test(SKCQ2Use, proQolPostBO, method = "spearman")
 # What about controlling for baseline PROQOL?
 # Correlate change scores for SKCQ and PROQOL variables
 ChgScores <-
-  data.frame(SKCQConfChg,
-             SKCQUndChg,
-             SKCQUseChg,
-             proQolCSChg,
-             proQolBOChg,
-             proQolSTSChg)
+  data.frame(dat$SKCQConfChg,
+             dat$SKCQUndChg,
+             dat$SKCQUseChg,
+             dat$proQolCSChg,
+             dat$proQolBOChg,
+             dat$proQolSTSChg)
 rcorr(as.matrix(ChgScores), type = "spearman")
 # No significant correlations of change scores
 
 # Regressions testing whether follow-up PROQOL variables are predicted by SKCQ training effects
-fit <-
+fitReg1 <-
   lm(proQolPostCS ~ proQolPreCS + SKCQConfChg + SKCQUndChg + SKCQUseChg,
      data = dat)
-summary(fit)
-fit <-
+summary(fitReg1) # No significant main effects of SKCQ changes
+fitReg2 <-
   lm(proQolPostBO ~ proQolPreBO + SKCQConfChg + SKCQUndChg + SKCQUseChg,
      data = dat)
-summary(fit)
-fit <-
+summary(fitReg2) # No significant main effects of SKCQ changes
+fitReg3 <-
   lm(proQolPostSTS ~ proQolPreSTS + SKCQConfChg + SKCQUndChg + SKCQUseChg,
      data = dat)
-summary(fit)
-# Change in understanding of Solihull concepts is a signifcant predictor of STS at follow-up
-
-# datSchOnly <- dat[dat$school %in% c(2:5), ] # Works to select only school-based trainings
+summary(fitReg3) # Change in understanding of Solihull concepts is a signifcant predictor of STS at follow-up
 
 ### HYPOTHESIS 3 partially accepted
