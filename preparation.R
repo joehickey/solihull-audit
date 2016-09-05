@@ -257,12 +257,12 @@ proQolPostBOT <- (proQolPostBOZ * 10) + 50
 proQolPostSTST <- (proQolPostSTSZ * 10) + 50
 
 # Calculate change scores
-SKCQConfChg <- SKCQ4Conf - SKCQ1Conf
-SKCQUndChg <- SKCQ4Und - SKCQ1Und
-SKCQUseChg <- SKCQ4Use - SKCQ1Use
-proQolCSChg <- proQolPostCS - proQolPreCS
-proQolBOChg <- proQolPostBO - proQolPreBO
-proQolSTSChg <- proQolPostSTS - proQolPreSTS
+dat$SKCQConfChg <- SKCQ4Conf - SKCQ1Conf
+dat$SKCQUndChg <- SKCQ4Und - SKCQ1Und
+dat$SKCQUseChg <- SKCQ4Use - SKCQ1Use
+dat$proQolCSChg <- proQolPostCS - proQolPreCS
+dat$proQolBOChg <- proQolPostBO - proQolPreBO
+dat$proQolSTSChg <- proQolPostSTS - proQolPreSTS
 
 # Make a data.frame in 'long' format to assist repeated measures analysis
 datLong <- dat
