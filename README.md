@@ -1,6 +1,12 @@
 # solihull-audit
 Data handling files for Solihull audit project
 
+## Installation
+1. Use separate Google Drive link to make local copy of 'solihull' folder.
+2. Navigate to solihull/data/R
+3. Make local copy of the R scripts  
+```$ git clone https://github.com/joehickey/solihull-audit.git```
+
 ## IVs
 - **school**
 - **age** (whole years)
