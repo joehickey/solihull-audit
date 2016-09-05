@@ -148,7 +148,7 @@ ChgScores <-
              proQolCSChg,
              proQolBOChg,
              proQolSTSChg)
-rcorr(as.matrix(ChgScores), type = "pearson")
+rcorr(as.matrix(ChgScores), type = "spearman")
 # No significant correlations of change scores
 
 # Regressions testing whether follow-up PROQOL variables are predicted by SKCQ training effects
