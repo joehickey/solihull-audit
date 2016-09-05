@@ -2,5 +2,7 @@
 .Rhistory
 .RData
 .Ruserdata
+.Rproj
+.Rbuildignore
 "Icon\r"
 vars_readme
