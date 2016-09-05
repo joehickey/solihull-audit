@@ -494,6 +494,7 @@ SKCQ1UseRecip <-
 shapiro.test(SKCQ1UseRecip)
 ggplot(dat, aes(SKCQ1UseRecip)) + geom_histogram() # Cannot assume normality
 # SKCQ1Use not normally distributed and can't be usefully transformed
+# Use non-parametric methods with SKCQ data
 
 # Check internal consistency for Solihull Knowlege and Confidence Questionnaire
 SKCQ1ConfCols <-
@@ -685,6 +686,8 @@ with(dat,
      ))
 # Significant effects of school on baseline variables
 # Include school as control variable in later analysis
+
+datSchOnly <- dat[dat$school %in% c(2:5), ] # Works to select only school-based training sites
 
 
 # Check visually whether SKCQ scales vary by job
