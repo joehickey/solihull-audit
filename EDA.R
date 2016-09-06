@@ -19,6 +19,7 @@ library(Hmisc)
 # i.e. school staff vs others. Also check by timepoint for DVs.
 # Calculate Levene's test of homogoneity of variances in multivariate EDA for factors, and graphs (Field 7.9.5)
 # for correlational analysis.
+# Add in the relevant training feedback variables
 
 #################
 ## Examine IVs ##

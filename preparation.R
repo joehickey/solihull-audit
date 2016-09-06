@@ -12,6 +12,7 @@ library(psy)
 
 # ToDo:
 # Make PROQOL variables right in 'long' format datset
+# Sort out variables for training feedback questionnaire
 
 ######################
 ## DATA PREPARATION ##
