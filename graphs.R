@@ -10,6 +10,8 @@ library(multcomp)
 library(dplyr)
 library(psy)
 
+# toDo:
+# pre/post graph for PROQOL variables once sorted out 'long' format data in preparation.R
 
 # Plot change in SCKQ variables
 pd <- position_dodge(width = 0.5)
