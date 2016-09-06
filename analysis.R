@@ -11,9 +11,9 @@ library(dplyr)
 library(psy)
 library (Hmisc)
 
-# Add school in a multilevel model of SKCQ change? - Check Field p.878 on how.
-# For hypothesis 3, non-parametric or robust alternative to the pre/post regression 
-# already calculated in 'analysis'
+# ToDo:
+# If using parametric stats, maybe add school in a multilevel model of SKCQ change? - Field p.878
+# If using parametric stats, finish properly specifying and checking regressions for H3.
 
 ##################    Confidence with emotional/behavioural difficulties,
 ## HYPOTHESIS 1 ##    understanding of Solihull concepts

@@ -583,6 +583,7 @@ datLongSumm <- ddply(
 ######################
 ## Multivariate EDA ##
 ######################
+
 # Correlation matrices for Solihull Knowledge and Confidence Questionnaire
 rcorr(as.matrix(SKCQAll), type = "pearson")
 # All SKCQ subscales significantly intercorrelated at baseline and follow-up

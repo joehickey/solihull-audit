@@ -10,6 +10,9 @@ library(multcomp)
 library(dplyr)
 library(psy)
 
+# ToDo:
+# Make PROQOL variables right in 'long' format datset
+
 ######################
 ## DATA PREPARATION ##
 ######################
@@ -304,5 +307,3 @@ datLongSumm <- ddply(
   sd   = sd(solihullConf, na.rm = TRUE),
   se   = sd / sqrt(N)
 )
-
-# Separate out PROQOL variables into long format by amending code block above. Think can just rename the variables!
