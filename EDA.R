@@ -12,6 +12,7 @@ library(psy)
 library(gridExtra)
 library(psych)
 library(pastecs)
+library(Hmisc)
 
 # toDo:
 # Check in multivariate EDA whether subgroups anticipated to be controlled are individually normal, 
@@ -566,7 +567,7 @@ cronbach(SKCQ1UseCols) # Calculate Cronbach's alpha for SKCQ Usage items
 cronbach(SKCQ2UseCols)
 cronbach(SKCQ3UseCols)
 cronbach(SKCQ4UseCols)
-# Acceptable internal consistency for SKCQ variables
+# Acceptable internal consistency for SKCQ variables EXCEPT SKCQ3Conf. Fewest participants completed this one.
 
 # Produce summary of SKCQ data for later graphing
 datLongSumm <- ddply(
