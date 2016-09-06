@@ -13,17 +13,18 @@ library(gridExtra)
 library(psych)
 library(pastecs)
 
+# toDo:
+# Check in multivariate EDA whether subgroups anticipated to be controlled are individually normal, 
+# i.e. school staff vs others. Also check by timepoint for DVs.
+# Calculate Levene's test of homogoneity of variances in multivariate EDA for factors, and graphs (Field 7.9.5)
+# for correlational analysis.
+
 #################
 ## Examine IVs ##
 #################
 
 indVars <-
   cbind(dat$age, dat$timeAtSchool, dat$timeInJob, deparse.level = 2)
-
-###### Check in multivariate EDA whether subgroups anticipated to be controlled are individually normal, 
-###### i.e. school staff vs others. Also check by timepoint for DVs.
-###### Calculate Levene's test of homogoneity of variances in multivariate EDA for factors, and graphs (Field 7.9.5)
-###### for correlational analysis.
 
 round(stat.desc(indVars, basic = FALSE, norm = TRUE), digits = 3)
 # Indicates significant skewness and kurtosis for all three variables
