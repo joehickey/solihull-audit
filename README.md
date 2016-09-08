@@ -14,8 +14,8 @@ Start new RStudio project using version control
 - **age** (whole years)
 - **gender**
 - **job** (free text)
-- **timeAtSchool** (Months elapsed since joining school)
-- **timeInJob** (Months elapsed)
+- **timeAtSchool** (Months elapsed since joining this school)
+- **timeInJob** (Months elapsed in role at any workplace)
 
 ## DVs
 - **Professional Quality of Life Scale (PROQOL)**  
