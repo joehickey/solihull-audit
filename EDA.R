@@ -591,6 +591,8 @@ datLongSumm <- ddply(
 rcorr(as.matrix(SKCQAll), type = "pearson")
 # All SKCQ subscales significantly intercorrelated at baseline and follow-up
 
+# Check for effects of school on baseline DVs
+
 # Check whether SKCQ scales vary by school
 ggplot(dat, aes(factor(school), SKCQ1Conf)) +
   geom_boxplot()
@@ -688,11 +690,12 @@ with(dat,
        paired = F,
        na.rm = T
      ))
-# Significant effects of school on baseline variables
+# Significant effects of school on baseline DVs
 # Include school as control variable in later analysis
 
 datSchOnly <- dat[dat$school %in% c(2:5), ] # Works to select only school-based training sites
 
+# Check for effects of job on baseline DVs
 
 # Check visually whether SKCQ scales vary by job
 ggplot(dat, aes(factor(dat$jobCat), SKCQ4Conf)) +
