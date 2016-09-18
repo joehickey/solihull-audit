@@ -698,18 +698,19 @@ datSchOnly <- dat[dat$school %in% c(2:5), ] # Works to select only school-based 
 # Check for effects of job on baseline DVs
 
 # Check visually whether SKCQ scales vary by job
-ggplot(dat, aes(factor(dat$jobCat), SKCQ4Conf)) +
+ggplot(dat, aes(factor(dat$jobCat), SKCQ1Conf)) +
   geom_boxplot()
-ggplot(dat, aes(factor(dat$jobCat), SKCQ4Und)) +
+ggplot(dat, aes(factor(dat$jobCat), SKCQ1Und)) +
   geom_boxplot()
-ggplot(dat, aes(factor(dat$jobCat), SKCQ4Use)) +
+ggplot(dat, aes(factor(dat$jobCat), SKCQ1Use)) +
   geom_boxplot()
-# Check visually whether SKCQ scales vary by job
-fit <-
+# Examine whether SKCQ scales vary by job
+# Check Confidence using ANOVA
+fitSKCQConf1Job <-
   aov(SKCQ1Conf ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
 layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
-plot(fit) # diagnostic plots
-summary(fit) # display Type I ANOVA table
+plot(fitSKCQConf1Job) # diagnostic plots
+summary(fitSKCQConf1Job) # display Type I ANOVA table
 with(dat,
      pairwise.t.test(
        SKCQ1Conf,
@@ -719,4 +720,49 @@ with(dat,
        na.rm = T
      ))
 # SLT's baseline SKCQ Confidence scores were significantly lower than teachers, TAs and 'others' but not FSWs
-# Include job as a control variable in later analysis
+# Check Understanding using ANOVA
+fitSKCQUnd1Job <-
+  aov(SKCQ1Und ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
+layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
+plot(fitSKCQUnd1Job) # diagnostic plots
+summary(fitSKCQUnd1Job) # display Type I ANOVA table
+# No main effects of job on baseline SKCQ Understanding scores
+# Check Usage using ANOVA
+fitSKCQUse1Job <-
+  aov(SKCQ1Use ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
+layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
+plot(fitSKCQUse1Job) # diagnostic plots
+summary(fitSKCQUse1Job) # display Type I ANOVA table
+# No main effects of job on baseline SKCQ Usage scores
+
+# Check visually whether PROQOL scales vary by job
+# NB 'school 1' did not complete PROQOL
+ggplot(dat, aes(factor(dat$jobCat), proQolPreCS)) +
+  geom_boxplot()
+ggplot(dat, aes(factor(dat$jobCat), proQolPreBO)) +
+  geom_boxplot()
+ggplot(dat, aes(factor(dat$jobCat), proQolPreSTS)) +
+  geom_boxplot()
+# Check proQolPreCS using ANOVA
+fitProQOLPreCSJob <-
+  aov(proQolPreCS ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
+layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
+plot(fitProQOLPreCSJob) # diagnostic plots
+summary(fitProQOLPreCSJob) # display Type I ANOVA table
+# No main effects of job on baseline PROQOL CS scale
+# Check proQolPreBO using ANOVA
+fitProQOLPreBOJob <-
+  aov(proQolPreBO ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
+layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
+plot(fitProQOLPreBOJob) # diagnostic plots
+summary(fitProQOLPreBOJob) # display Type I ANOVA table
+# No main effects of job on baseline PROQOL BO scale
+# Check proQolPreSTS using ANOVA
+fitProQOLPreSTSJob <-
+  aov(proQolPreSTS ~ dat$jobCat, data = dat) # One Way Anova (Completely Randomized Design)
+layout(matrix(c(1, 2, 3, 4), 2, 2)) # optional layout
+plot(fitProQOLPreSTSJob) # diagnostic plots
+summary(fitProQOLPreSTSJob) # display Type I ANOVA table
+# No main effects of job on baseline PROQOL BO scale
+
+# Need to control for job during analysis of training effects.

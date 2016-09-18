@@ -1,3 +1,5 @@
-Exploratory data analysis revealed skewed distributions for age, time in role and time at current school.
+Univariate data analysis revealed skewed distributions for age, time in role and time at current school. Transormations were unsuccessful and therefore ...?
+
+Multivariate EDA revealed a main effect of job on baseline Confidence, with SLTs reporting lower SKCQConf scores than all workers except FSWs. 
 
 The Solihull Knowledge and Confidence Questionnaire had acceptable internal consistency for each scale (Cronbach's alpha > .80), except for Confidence at timepoint three.
