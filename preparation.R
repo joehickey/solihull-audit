@@ -1,5 +1,4 @@
-# Set working directory
-setwd("~/R") # Amend as needed
+
 library(ggplot2)
 library(gplots)
 library(car)
@@ -40,9 +39,8 @@ varTypes <-
   )
 
 # Read the data
-parentDir <- dirname(getwd())
 dat <-
-  read.csv(paste(parentDir, "solihull_eval_db_20160728.csv", sep = "/"),
+  read.csv("solihull-audit/solihull_eval_db_20160728.csv",
            colClasses = varTypes)
 
 # Recode job into four levels

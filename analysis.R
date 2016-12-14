@@ -1,5 +1,4 @@
-# Set working directory
-setwd("~/Google Drive/psychology/cyp/solihull/data/R") # Amend as needed
+
 library(ggplot2)
 library(gplots)
 library(car)
@@ -10,6 +9,7 @@ library(multcomp)
 library(dplyr)
 library(psy)
 library (Hmisc)
+library(knitr)
 
 # ToDo:
 # If using parametric stats, maybe add school in a multilevel model of SKCQ change? - Field p.878

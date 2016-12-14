@@ -1,5 +1,4 @@
-# Set working directory
-setwd("~/Google Drive/psychology/cyp/solihull/data/R") # Amend as needed
+
 library(ggplot2)
 library(gplots)
 library(car)
