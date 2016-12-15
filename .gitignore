@@ -27,4 +27,4 @@ vignettes/*.pdf
 ### Additions ###
 *.Rproj
 .Rproj.user
-.csv
+*.csv
