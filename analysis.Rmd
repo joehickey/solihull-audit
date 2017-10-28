@@ -1,12 +1,15 @@
 ---
 title: "solihull-audit data analysis"
 author: "Joe Hickey"
-date: "14/12/2016"
-output: word_document
+date: 23/10/2017
+output:
+  word_document: default
+  html_document:
+    df_print: paged
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_chunk$set(include = FALSE, echo = FALSE)
 ```
 
 ```{r}
@@ -24,6 +27,8 @@ library(nlme)
 library(multcomp)
 library(dplyr)
 library(psy)
+library(Hmisc)
+library(knitr)
 
 # ToDo:
 # Make PROQOL variables right in 'long' format datset
@@ -325,10 +330,7 @@ datLongSumm <- ddply(
 
 ```
 
-
-
-
-```{r EDA, include=TRUE}
+```{r EDA, include=FALSE}
 
 library(ggplot2)
 library(gplots)
@@ -1098,29 +1100,14 @@ summary(fitProQOLPreSTSJob) # display Type I ANOVA table
 # Need to control for job during analysis of training effects.
 ```
 
+# Data Analysis
 
-```{r analysis}
-library(ggplot2)
-library(gplots)
-library(car)
-library(tidyr)
-library(plyr)
-library(nlme)
-library(multcomp)
-library(dplyr)
-library(psy)
-library (Hmisc)
-library(knitr)
+## Hypothesis 1
+### Confidence with emotional/behavioural difficulties, understanding of Solihull concepts and intent to use Solihull concepts all increase following Solihull training.
 
-# ToDo:
-# If using parametric stats, maybe add school in a multilevel model of SKCQ change? - Field p.878
-# If using parametric stats, finish properly specifying and checking regressions for H3.
+Compare confidence in working with emotional/behavioural difficulties at T1 and T4:
+```{r include=TRUE}
 
-##################    Confidence with emotional/behavioural difficulties,
-## HYPOTHESIS 1 ##    understanding of Solihull concepts
-##################    and intent to use Solihull concepts all increase following Solihull training
-
-# Non-parametric tests
 wilcox.test(
   SKCQ1Conf,
   SKCQ4Conf,
@@ -1129,96 +1116,42 @@ wilcox.test(
   exact = FALSE,
   conf.int = TRUE
 )
+```
 
-# Parametric tests
-t.test(SKCQ1Conf, SKCQ4Conf, paired = T)
-t.test(SKCQ1Und, SKCQ4Und, paired = T)
-t.test(SKCQ1Use, SKCQ4Use, paired = T)
+Compare understanding of Solihull concepts at T1 and T4:
 
-# Mixed model of Solihull training effects over time
-# Confidence
-contrasts(datLong$timepoint) <- contr.helmert(4)
-confModel <-
-  lme(
-    solihullConf ~ timepoint,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-summary(confModel)
-baseline <-
-  lme(
-    solihullConf ~ 1,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-anova(baseline, confModel)
-postHocs <- glht(confModel, linfct = mcp(timepoint = "Tukey"))
-summary(postHocs)
+```{r include = TRUE}
+wilcox.test(
+  SKCQ1Und,
+  SKCQ4Und,
+  alternative = "two.sided",
+  paired = TRUE,
+  exact = FALSE,
+  conf.int = TRUE
+)
+```
 
-confModelAge <-
-  update(confModel, .~. + age)
+Compare intent to use Solihull concepts at T1 and T4:
 
-# Understanding
-undModel <-
-  lme(
-    solihullUnd ~ timepoint,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-summary(undModel)
-baseline <-
-  lme(
-    solihullUnd ~ 1,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-anova(baseline, undModel)
-postHocs <- glht(undModel, linfct = mcp(timepoint = "Tukey"))
-summary(postHocs)
+```{r include = TRUE}
+wilcox.test(
+  SKCQ1Use,
+  SKCQ4Use,
+  alternative = "two.sided",
+  paired = TRUE,
+  exact = FALSE,
+  conf.int = TRUE
+)
+```
 
-# Using
-useModel <-
-  lme(
-    solihullUse ~ timepoint,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-summary(useModel)
-baseline <-
-  lme(
-    solihullUse ~ 1,
-    random = ~ 1 |
-      caseID / timepoint,
-    data = datLong,
-    method = "ML",
-    na.action = na.omit
-  )
-anova(baseline, useModel)
-postHocs <- glht(useModel, linfct = mcp(timepoint = "Tukey"))
-summary(postHocs)
+All differences are significant according to non-parametric tests.
 
-### HYPOTHESIS 1 accepted
+#### Hypothesis 1 accepted.
 
-##################
-## HYPOTHESIS 2 ## Professional quality of life increases following Solihull training
-##################
+## Hypothesis 2
+### Professional quality of life increases following Solihull training.
 
-# Non-parametric tests
+```{r include = TRUE}
 wilcox.test(
   proQolPreCS,
   proQolPostCS,
@@ -1227,26 +1160,36 @@ wilcox.test(
   exact = FALSE,
   conf.int = TRUE
 )
+```
+Difference is significant according to non-parametric test.
 
-# Parametric tests
-t.test(proQolPreCS, proQolPostCS, paired = T)
-t.test(proQolPreBO, proQolPostBO, paired = T)
-t.test(proQolPreSTS, proQolPostSTS, paired = T)
+#### Hypothesis 2 accepted.
 
-### HYPOTHESIS 2 accepted
+## Hypothesis 3
+### Solihull training effects are associated with increased professional quality of life
 
-###################
-### HYPOTHESIS 3 ## Solihull training effects predict increased professional quality of life
-###################
+Test for linear relationships between change in SKCQ and change in PROQOL first by examining all correlations (not shown), then follow up significant ones.
 
-# Test for linear relationships between change in SCKQ and change in PROQOL
+```{r include=FALSE}
 rcorr(as.matrix(data.frame(SKCQAll, proQolAll), type = "spearman"))
-# Follow up significant correlations
+```
+
+Significant correlation between T2 intent to use Solihull concepts and post-training PROQOL compassion satisfaction:
+
+```{r include = TRUE}
 cor.test(SKCQ2Use, proQolPostCS, method = "spearman")
+```
+
+Significant correlation between T2 intent to use Solihull concepts and post-training PROQOL burnout:
+
+```{r include = TRUE}
 cor.test(SKCQ2Use, proQolPostBO, method = "spearman")
-# Significant correlations between SKCQ2Use and proQolPostCS, SKCQ2Use and proQolPostBO
-# What about controlling for baseline PROQOL?
-# Correlate change scores for SKCQ and PROQOL variables
+```
+
+What about controlling for baseline PROQOL?
+Correlate change scores for SKCQ and PROQOL variables:
+
+```{r, include = TRUE}
 ChgScores <-
   data.frame(dat$SKCQConfChg,
              dat$SKCQUndChg,
@@ -1255,39 +1198,14 @@ ChgScores <-
              dat$proQolBOChg,
              dat$proQolSTSChg)
 rcorr(as.matrix(ChgScores), type = "spearman")
-# No significant correlations of change scores
-
-# Regressions testing whether follow-up PROQOL variables are predicted by SKCQ training effects
-fitReg1 <-
-  lm(proQolPostCS ~ proQolPreCS + SKCQConfChg + SKCQUndChg + SKCQUseChg,
-     data = dat)
-summary(fitReg1) # No significant main effects of SKCQ changes
-fitReg2 <-
-  lm(proQolPostBO ~ proQolPreBO + SKCQConfChg + SKCQUndChg + SKCQUseChg,
-     data = dat)
-summary(fitReg2) # No significant main effects of SKCQ changes
-fitReg3 <-
-  lm(proQolPostSTS ~ proQolPreSTS + SKCQConfChg + SKCQUndChg + SKCQUseChg,
-     data = dat)
-summary(fitReg3) # Change in understanding of Solihull concepts is a signifcant predictor of STS at follow-up
-
-
-### HYPOTHESIS 3 partially accepted only if using parametric stats
 ```
+No significant correlations of change scores
 
-## Plots
+#### Hypothesis 3 not accepted.
 
-```{r plot, echo=FALSE}
+# Plots
 
-library(ggplot2)
-library(gplots)
-library(car)
-library(tidyr)
-library(plyr)
-library(nlme)
-library(multcomp)
-library(dplyr)
-library(psy)
+```{r plot, include = TRUE}
 
 # toDo:
 # pre/post graph for PROQOL variables once sorted out 'long' format data in preparation.R
